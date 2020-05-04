@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.5.RELEASE</version>
+  </parent>
+
+  <groupId>com.cmh</groupId>
+  <artifactId>cmh-item-biz-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>cmh-item-biz-web</module>
+    <module>cmh-item-biz-service</module>
+    <module>cmh-item-biz-dao</module>
+    <module>cmh-item-biz-comm</module>
+    <module>cmh-item-biz-msg</module>
+    <module>cmh-item-biz-rpc</module>
+    <module>cmh-item-biz-sdk</module>
+  </modules>
+
+  <properties>
+    <!--Plugin的属性定义-->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jdk.version>1.8</jdk.version>
+    <!--二方依赖-->
+    <cmh-project-basis.version>2.0-SNAPSHOT</cmh-project-basis.version>
+    <!--三方依赖-->
+    <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+    <mybatis-plus.version>3.2.0</mybatis-plus.version>
+    <mysql.version>5.1.44</mysql.version>
+    <log4j.version>1.7.26</log4j.version>
+    <lombok.version>1.16.18</lombok.version>
+    <commons-lang3.version>3.7</commons-lang3.version>
+    <rabbitmq.version>2.0.2</rabbitmq.version>
+    <spring-cloud-client.version>2.1.4.RELEASE</spring-cloud-client.version>
+    <guava.version>23.0</guava.version>
+    <redis-version>2.2.2.RELEASE</redis-version>
+    <elasticSearch.verison>6.4.3</elasticSearch.verison>
+    <com-alibaba-fastjson.version>1.2.51</com-alibaba-fastjson.version>
+    <mybatis-spring-boot-starter.version>1.3.1</mybatis-spring-boot-starter.version>
+  </properties>
+<dependencyManagement>
+  <dependencies>
+    <!-- 三方依赖-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+
+    <!--eureka client-->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+      <version>${spring-cloud-client.version}</version>
+    </dependency>
+
+    <!--mybatisplus-->
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus</artifactId>
+      <version>${mybatis-plus.version}</version>
+    </dependency>
+
+    <!--RabbitMQ集成springboot所需依赖-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-amqp</artifactId>
+      <version>2.2.2.RELEASE</version>
+    </dependency>
+
+    <!--日志依赖-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+    </dependency>
+
+    <!--redis-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+      <version>${redis-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
+    </dependency>
+
+    <!--guava-->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.elasticsearch.client</groupId>
+      <artifactId>transport</artifactId>
+      <version>${elasticSearch.verison}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>${com-alibaba-fastjson.version}</version>
+    </dependency>
+
+    <!--mysql驱动-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>${mybatis-spring-boot-starter.version}</version>
+    </dependency>
+
+    <!--二方依赖-->
+    <dependency>
+      <groupId>com.cmh</groupId>
+      <artifactId>cmh-project-basis-utils</artifactId>
+      <version>${cmh-project-basis.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cmh</groupId>
+      <artifactId>cmh-project-basis-base</artifactId>
+      <version>${cmh-project-basis.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cmh</groupId>
+      <artifactId>cmh-item-biz-comm</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cmh</groupId>
+      <artifactId>cmh-item-biz-dao</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cmh</groupId>
+      <artifactId>cmh-item-biz-msg</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cmh</groupId>
+      <artifactId>cmh-item-biz-rpc</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cmh</groupId>
+      <artifactId>cmh-item-biz-sdk</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cmh</groupId>
+      <artifactId>cmh-item-biz-service</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cmh</groupId>
+      <artifactId>cmh-item-biz-web</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+  </dependencies>
+</dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>${jdk.version}</source>
+            <target>${jdk.version}</target>
+            <showWarnings>false</showWarnings>
+            <encoding>${project.build.sourceEncoding}</encoding>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <configuration>
+            <skip>false</skip>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+    <profile>
+      <!--本地环境-->
+      <id>dev</id>
+      <properties>
+        <activatedProfile>dev</activatedProfile>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <!--生产环境-->
+      <id>prod</id>
+      <properties>
+        <activatedProfile>prod</activatedProfile>
+      </properties>
+    </profile>
+  </profiles>
+</project>
