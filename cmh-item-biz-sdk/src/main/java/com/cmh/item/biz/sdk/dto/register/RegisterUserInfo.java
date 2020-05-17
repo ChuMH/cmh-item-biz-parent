@@ -15,5 +15,5 @@ public class RegisterUserInfo {
     private String userName;
     private String password;
 
-    private String mail;
+    private String email;
 }

@@ -6,6 +6,7 @@ import com.cmh.item.biz.sdk.service.login.LoginService;
 import com.cmh.item.biz.sdk.service.register.RegisterService;
 import com.cmh.project.basis.base.ResultBuilder;
 import com.cmh.project.basis.base.constant.SysResultCode;
+import com.cmh.project.basis.utils.json.FastJsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,6 +43,7 @@ public class LoginAndRegisterController {
     @RequestMapping(value = "/register", method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=UTF-8")
     public ResultBuilder<Boolean> register(@RequestBody RegisterUserInfo user) {
         try {
+            log.info(FastJsonUtil.obj2json(user));
             //校验用户信息是否完整
             if (user == null) {
                 return ResultBuilder.failure(SysResultCode.SYS_BAD_REQUEST.getMsg(), false);
