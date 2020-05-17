@@ -21,4 +21,6 @@ public class PersonDto implements Serializable {
     private String age;
 
     private String hobby;
+
+    private Long degree;
 }

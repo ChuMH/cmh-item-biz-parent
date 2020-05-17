@@ -6,6 +6,7 @@ import com.cmh.item.biz.sdk.service.login.LoginService;
 import com.cmh.item.biz.sdk.service.register.RegisterService;
 import com.cmh.project.basis.base.ResultBuilder;
 import com.cmh.project.basis.base.constant.SysResultCode;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import javax.annotation.Resource;
  * @data：2020/05/01
  * @description：登录注册入口
  */
+@Slf4j
 @RestController
 @RequestMapping("/user")
 public class LoginAndRegisterController {

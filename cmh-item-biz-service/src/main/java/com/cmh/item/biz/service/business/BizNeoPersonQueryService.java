@@ -8,6 +8,7 @@ import com.cmh.item.biz.sdk.dto.neo4j.PersonDto;
 import com.cmh.item.biz.sdk.dto.neo4j.PersonShortestPathDto;
 import com.cmh.project.basis.base.ResultBuilder;
 import com.cmh.project.basis.base.constant.SysResultCode;
+import com.cmh.project.basis.utils.json.FastJsonUtil;
 import com.google.common.base.Preconditions;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -36,6 +37,7 @@ public class BizNeoPersonQueryService {
     public ResultBuilder queryShortestPath(PersonShortestPathDto shortestPathUsers) {
         try {
             List<intimacy> shortestPathList =  neo4jPersonService.queryShortestPath(shortestPathUsers.getStartId(), shortestPathUsers.getTargetId());
+            log.info(FastJsonUtil.obj2json(shortestPathList));
             Map result = translatePersonRelationDto(shortestPathList);
             return ResultBuilder.success(Optional.ofNullable(result).orElse(new LinkedHashMap(0)));
         } catch (Exception e) {
@@ -57,6 +59,7 @@ public class BizNeoPersonQueryService {
         List<intimacy> intimacyList = null;
         try {
             intimacyList = neo4jPersonService.queryTargetRadiationByLevel(userId);
+            log.info(FastJsonUtil.obj2json(intimacyList));
             Map<String, Object> res = translatePersonRelationDto(intimacyList);
             return ResultBuilder.success(Optional.ofNullable(res).orElse(new LinkedHashMap<>(0)));
         }catch (Exception e){
@@ -88,10 +91,10 @@ public class BizNeoPersonQueryService {
     private Map<String, Object> translatePersonRelationDto(List<intimacy> personRelationDtos) {
         Map<String, PersonDto> nodeMap = new LinkedHashMap<>();
         Map<String, Object> map = new HashMap<>();
-        List<Long> links = new ArrayList<>();
         for(intimacy intimacy : personRelationDtos){
             Person start = intimacy.getStartNode();
             Person end = intimacy.getEndNode();
+            Long degree = intimacy.getDegree();
 
             PersonDto startNode = new PersonDto();
             startNode.setId(start.getId());
@@ -99,6 +102,7 @@ public class BizNeoPersonQueryService {
             startNode.setName(start.getName());
             startNode.setAge(start.getAge());
             startNode.setHobby(start.getHobby());
+            startNode.setDegree(degree);
 
             PersonDto endNode = new PersonDto();
             endNode.setId(end.getId());
@@ -106,6 +110,7 @@ public class BizNeoPersonQueryService {
             endNode.setName(end.getName());
             endNode.setAge(end.getAge());
             endNode.setHobby(end.getHobby());
+            endNode.setDegree(degree);
 
             if (!nodeMap.containsKey(startNode.getName())) {
                 nodeMap.put(startNode.getName(), startNode);
@@ -113,11 +118,12 @@ public class BizNeoPersonQueryService {
             if (!nodeMap.containsKey(endNode.getName())) {
                 nodeMap.put(endNode.getName(), endNode);
             }
-            links.add(intimacy.getDegree());
         }
         Collection<PersonDto> values = nodeMap.values();
         List<PersonDto> collect = values.stream().collect(Collectors.toList());
-        map.put("links", links);
+        int length = collect.size();
+        PersonDto personDto = collect.get(length-1);
+        personDto.setDegree(null);
         map.put("nodes", collect);
         return map;
     }
