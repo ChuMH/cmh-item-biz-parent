@@ -22,7 +22,7 @@ public class BizRateLimitService{
      * 通过限制单台机器访问次数，一分钟内二次
      * @return
      */
-    @CommRateLimiter(strategies = {@RateLimiterStrategy(mode = RateLimiterMode.COUNT_MODE,value = 2)})
+    @CommRateLimiter(strategies = {@RateLimiterStrategy(mode = RateLimiterMode.COUNT_MODE,value = 5)})
     public ResultBuilder rateLimitByCount() {
         return ResultBuilder.success();
     }

@@ -47,7 +47,7 @@ public class RateLimiterAspect implements ApplicationListener<ContextRefreshedEv
      */
     private static Cache<String, AtomicInteger> maxReqManagement = CacheBuilder
             .newBuilder()
-            .expireAfterWrite(1, TimeUnit.MINUTES)
+            .expireAfterWrite(10, TimeUnit.SECONDS)
             .build();
 
     /**
