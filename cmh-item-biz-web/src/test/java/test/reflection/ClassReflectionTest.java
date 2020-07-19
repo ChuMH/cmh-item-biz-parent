@@ -1,4 +1,4 @@
-package test;
+package test.reflection;
 
 import com.cmh.item.biz.service.impl.neo4j.NeoPersonQueryServiceImpl;
 
